@@ -31,6 +31,6 @@ contract CounterTest is Test {
         c.inc();
         c.inc();
         c.dec();
-        assertEq(c.get(), 1);
+        assertEq(c.get(), 1 );
     }
 }
