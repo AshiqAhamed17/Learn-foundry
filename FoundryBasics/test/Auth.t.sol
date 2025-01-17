@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {Test, console} from "forge-std/Test.sol";
 import {stdError} from "forge-std/StdError.sol";
 
-import { Wallet } from "../src/Wallet.sol";
+import {Wallet} from "../src/Wallet.sol";
 
 contract AuthTest is Test {
     Wallet public w;
@@ -14,7 +14,7 @@ contract AuthTest is Test {
     }
 
     function testSetOwner() public {
-        address ad = vm.addr(1); 
+        address ad = vm.addr(1);
         w.setOwner(ad);
         assertEq(w.owner(), ad);
     }

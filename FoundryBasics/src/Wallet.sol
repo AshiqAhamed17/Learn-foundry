@@ -9,8 +9,8 @@ contract Wallet {
     }
 
     receive() external payable {}
-    
-    function withdraw(uint _amount) external {
+
+    function withdraw(uint256 _amount) external {
         require(owner == msg.sender, "Not the owner");
         payable(msg.sender).transfer(_amount);
     }
@@ -19,8 +19,4 @@ contract Wallet {
         require(msg.sender == owner, "Not the owner");
         owner = payable(_owner);
     }
-
-
-
-
 }
