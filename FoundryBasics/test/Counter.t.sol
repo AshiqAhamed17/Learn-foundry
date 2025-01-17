@@ -10,6 +10,7 @@ contract CounterTest is Test {
     Counter public c;
 
     function setUp() public {
+        console.log("SetUp callled");
         c = new Counter();
     }
 
@@ -31,6 +32,6 @@ contract CounterTest is Test {
         c.inc();
         c.inc();
         c.dec();
-        assertEq(c.get(), 1 );
+        assertEq(c.get(), 1);
     }
 }

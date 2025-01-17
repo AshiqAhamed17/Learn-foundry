@@ -2,9 +2,9 @@
 pragma solidity ^0.8.13;
 
 import {Test, console} from "forge-std/Test.sol";
-import { Hello } from "../src/Hello.sol";
+import {Hello} from "../src/Hello.sol";
 
-contract HelloTest is Test  {
+contract HelloTest is Test {
     Hello public h;
 
     function setUp() public {
@@ -16,7 +16,7 @@ contract HelloTest is Test  {
     }
 
     function testSetMessage() public {
-       h.setMessage();
-       assertEq(h.message(), "Hello Foundry!");
+        h.setMessage();
+        assertEq(h.message(), "Hello Foundry!");
     }
 }
