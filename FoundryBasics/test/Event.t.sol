@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import { Test } from "forge-std/Test.sol";
+import {Test} from "forge-std/Test.sol";
 
-import { Event } from "../src/Event.sol";
+import {Event} from "../src/Event.sol";
 
 contract EventTest is Test {
     Event public e;
-    event Transfer(address indexed from, address indexed to, uint amount);
+
+    event Transfer(address indexed from, address indexed to, uint256 amount);
 
     function setUp() public {
         e = new Event();
     }
 
     function testEmitTransferEvent() public {
-
         // 1. Tell Foundry which data to check
         // 2. Emit the Expected Event
         // 3. Call the function that should emit the Event
@@ -33,24 +33,19 @@ contract EventTest is Test {
         to[0] = vm.addr(1);
         to[1] = vm.addr(2);
 
-        uint[] memory amounts = new uint[](2);
+        uint256[] memory amounts = new uint256[](2);
         amounts[0] = 100;
         amounts[1] = 700;
 
-        for(uint i=0; i<to.length; i++) {
+        for (uint256 i = 0; i < to.length; i++) {
             // 1. Tell Foundry which data to check
             vm.expectEmit(true, true, false, true);
 
-             // 2. Emit the Expected Event
-             emit Transfer(address(this), to[i], amounts[i]);
+            // 2. Emit the Expected Event
+            emit Transfer(address(this), to[i], amounts[i]);
         }
 
         // 3. Call the function that should emit the Event
         e.transferMany(address(this), to, amounts);
-
-
-        
-
-
     }
 }
