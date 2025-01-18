@@ -52,4 +52,22 @@ contract WalletTest is Test {
         assertEq(address(w).balance, bal + 123 + 456);
     }
 
+    function testFailWithdrawNotOwner() public {
+        vm.prank(vm.addr(1));
+        w.withdraw(100);
+    }
+
+    function testWithdraw() public {
+        uint bal = address(w).balance;
+        w.withdraw(100);
+        assertEq(address(w).balance, bal- 100);
+    }
+
+    function testWithdrawNotOwner() public {
+        // Test fail and check error message
+        vm.prank(vm.addr(1));
+        vm.expectRevert(bytes("Not the owner"));
+        w.withdraw(100);
+    }
+
 }
