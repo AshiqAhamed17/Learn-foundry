@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import {Test } from "forge-std/Test.sol";
+import {Test} from "forge-std/Test.sol";
 import "forge-std/console.sol";
-import { Wallet } from "../src/Wallet.sol";
+import {Wallet} from "../src/Wallet.sol";
 
 // Examples of deal and hoax
 // deal(address, uint) - Set balance of address
 // hoax(address, uint) - deal + prank, Sets up a prank and set balance
-
 
 contract WalletTest is Test {
     Wallet public w;
@@ -23,15 +22,15 @@ contract WalletTest is Test {
         console.log("ETH Balance: ", address(this).balance / 1e18);
     }
 
-    function _send(uint _amount) private {
+    function _send(uint256 _amount) private {
         (bool ok,) = address(w).call{value: _amount}("");
         require(ok, "Faile to send ETH");
     }
 
     function testSendEth() public {
-        uint bal = address(w).balance;
+        uint256 bal = address(w).balance;
         address ad = vm.addr(1);
-        
+
         //deal
         deal(ad, 100);
         assertEq(ad.balance, 100);
@@ -58,9 +57,9 @@ contract WalletTest is Test {
     }
 
     function testWithdraw() public {
-        uint bal = address(w).balance;
+        uint256 bal = address(w).balance;
         w.withdraw(100);
-        assertEq(address(w).balance, bal- 100);
+        assertEq(address(w).balance, bal - 100);
     }
 
     function testWithdrawNotOwner() public {
@@ -69,5 +68,4 @@ contract WalletTest is Test {
         vm.expectRevert(bytes("Not the owner"));
         w.withdraw(100);
     }
-
 }
