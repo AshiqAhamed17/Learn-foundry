@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 import "forge-std/console.sol";
- 
+
 import {Bit} from "../src/Bit.sol";
 
 contract FuzzTest is Test {
@@ -12,4 +12,9 @@ contract FuzzTest is Test {
     function setUp() public {
         b = new Bit();
     }
+    function testABC() pure public {
+        uint x = 7;
+        assertEq(x, 7);
+    }
+    
 }

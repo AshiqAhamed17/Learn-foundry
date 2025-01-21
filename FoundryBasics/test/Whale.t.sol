@@ -10,26 +10,21 @@ contract ForkTest is Test {
     IERC20 public dai;
 
     function setUp() public {
-        dai =  IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
+        dai = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
     }
 
     function testDeposit() public {
         address ash = address(123);
-        
 
-        uint balBefore = dai.balanceOf(ash);
+        uint256 balBefore = dai.balanceOf(ash);
         console.log("Before Balance :", balBefore);
 
         // token, account, amount, adjust total supply
         deal(address(dai), ash, 1e6);
 
-        uint balAfter = dai.balanceOf(ash);
+        uint256 balAfter = dai.balanceOf(ash);
         console.log("After Balance :", balAfter);
 
-        assertEq(dai.balanceOf(ash), balBefore +balAfter);
-
+        assertEq(dai.balanceOf(ash), balBefore + balAfter);
     }
-
 }
-
-
