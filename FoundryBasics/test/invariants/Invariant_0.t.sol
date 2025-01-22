@@ -17,6 +17,7 @@ contract InvariantIntro {
     function flag_2() external {}
     function flag_3() external {}
     function flag_4() external {}
+
     function flag_5() external {
         flag = true;
     }

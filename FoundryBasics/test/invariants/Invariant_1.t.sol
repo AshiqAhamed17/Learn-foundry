@@ -16,7 +16,7 @@ contract WETH_Open_Invariant_Tests is Test {
     receive() external payable {}
 
     // NOTE: - calls = runs x depth, (runs, calls, reverts)
-    function invariant_totalSupply_is_always_zero() view public {
+    function invariant_totalSupply_is_always_zero() public view {
         assertEq(0, weth.totalSupply());
     }
 }

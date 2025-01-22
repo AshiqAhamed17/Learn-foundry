@@ -12,9 +12,9 @@ contract FuzzTest is Test {
     function setUp() public {
         b = new Bit();
     }
-    function testABC() pure public {
-        uint x = 7;
+
+    function testABC() public pure {
+        uint256 x = 7;
         assertEq(x, 7);
     }
-    
 }
