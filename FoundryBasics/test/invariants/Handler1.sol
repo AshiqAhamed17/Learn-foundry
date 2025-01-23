@@ -8,7 +8,7 @@ import {StdUtils} from "forge-std/StdUtils.sol";
 import {WETH} from "../../src/WETH.sol";
 
 
-contract Handler is CommonBase, StdUtils, StdCheats {
+contract Handler1 is CommonBase, StdUtils, StdCheats {
     WETH public weth;
 
     constructor (WETH _weth) {

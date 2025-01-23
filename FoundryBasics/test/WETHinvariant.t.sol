@@ -3,16 +3,16 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 
-import {WETH} from "../src/WETH.sol";
-import {Handler} from "./invariants/Handler.sol";
+import {WETH} from "../src/WETH.sol"; // If not working create WETH9.sol
+import {Handler1} from "./invariants/Handler1.sol";
 
 contract WETHinvariant is Test {
     WETH public weth;
-    Handler public handler;
+    Handler1 public handler;
 
     function setUp() public {
         weth = new WETH();
-        handler = new Handler(weth);
+        handler = new Handler1(weth);
 
         targetContract(address(handler));
     }
