@@ -23,8 +23,38 @@ contract ERC20FuzzTest is Test {
 
     function testFuzz_Transfer(uint256 amount) public {
         
+        vm.assume(amount > 0);
+        vm.assume(amount <= token.balanceOf(a));
+
+        uint256 aBeforeBalance = token.balanceOf(a);
+        uint256 bBeforeBalance = token.balanceOf(b);
+
+        vm.prank(a);
+        token.transfer(b, amount);
+
+        assertEq(token.balanceOf(a), aBeforeBalance - amount, "Balance Mismatch");
+        assertEq(token.balanceOf(b), bBeforeBalance + amount, "Balance Mismatch");
+
     }
 
+    function testFuzz_ApproveAndTransfer(uint256 amount) public {
+        vm.assume(amount > 0);
+        vm.assume(amount <= token.balanceOf(a));
 
+
+        vm.prank(a);
+        token.approve(b, amount);
+        uint256 initialAllowance = token.allowance(a, b);
+        uint256 initialBalanceA = token.balanceOf(a);
+        uint256 initialBalanceB = token.balanceOf(b);
+
+        vm.prank(b);
+        token.transferFrom(a, b, amount);
+
+        assertEq(token.balanceOf(a), initialBalanceA - amount, "Balance of 'a' mismatch");
+        assertEq(token.balanceOf(b), initialBalanceB + amount, "Balance of 'b' mismatch");
+
+        assertEq(token.allowance(a, b), initialAllowance - amount, "Allownace Mismatch");
+    }
 
 }
